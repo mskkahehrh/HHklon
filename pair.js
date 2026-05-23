@@ -3887,137 +3887,122 @@ END:VCARD` } }
 
 // 😂😂😂😂ase
 case 'menu': {
-try {
-    await socket.sendMessage(sender, { react: { text: "🍷", key: msg.key } });
+    try {       
+        await socket.sendMessage(sender, { react: { text: "🍷", key: msg.key } });
 
-    // --- ⚙️ BOT CONFIGURATION ---
-    const BOT_NAME = '𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 4.0.0𝗩 🥷🇱🇰';
-    const OWNER_NAME = '𝐀ʏᴇꜱʜ 𝐓ʜᴇᴍɪʏᴀ 🥷🇱🇰';
-    const CHANNEL_LINK = "https://whatsapp.com/channel/0029VbC3JfG77qVXz1CbJM3l";
-    const MENU_IMG = "https://files.catbox.moe/qb2puf.jpeg";
-    const VIDEO_INTRO = 'https://files.catbox.moe/ju6wqp.mp4';
+        const BOT_NAME = '𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 4.0.0𝗩 🥷🇱🇰';
+        const OWNER_NAME = '𝐀ʏᴇꜱʜ 𝐓ʜᴇᴍɪʏᴀ 🥷🇱🇰';
+        const CHANNEL_LINK = "https://whatsapp.com/channel/0029VbC3JfG77qVXz1CbJM3l";
+        const MENU_IMG = "https://files.catbox.moe/qb2puf.jpeg"; 
+        const VIDEO_INTRO = 'https://files.catbox.moe/ju6wqp.mp4'; 
+        
+        const slNow = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Colombo" }));
+        const hour = slNow.getHours();
 
-    // --- ✅ FAKE QUOTED (shonux) ---
-    const shonux = {
-        key: {
-            remoteJid: "status@broadcast",
-            participant: "0@s.whatsapp.net",
-            fromMe: false,
-            id: "ASHIYA_MD_V4"
-        },
-        message: {
-            contactMessage: {
-                displayName: BOT_NAME,
-                vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${BOT_NAME};;;;\nFN:${BOT_NAME}\nORG:Ayesh Themiya\nTEL;type=CELL;type=VOICE;waid=94700000000:94700000000\nEND:VCARD`
+        let greetingText = "";
+        if (hour < 5)        greetingText = "🌌 ᴇᴀʀʟʏ ᴍᴏʀɴɪɴɢ";
+        else if (hour < 12)  greetingText = "🌅 ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ";
+        else if (hour < 18)  greetingText = "🌞 ɢᴏᴏᴅ ᴀꜰᴛᴇʀɴᴏᴏɴ";
+        else if (hour < 22)  greetingText = "🌙 ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ";
+        else                 greetingText = "🦉 ꜱᴡᴇᴇᴛ ᴅʀᴇᴀᴍꜱ";
+
+        const ramUsage = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2);
+        const uptime = process.uptime();
+        const days = Math.floor(uptime / (24 * 3600));
+        const hours = Math.floor((uptime % (24 * 3600)) / 3600);
+        const minutes = Math.floor((uptime % 3600) / 60);
+        const runtime = `${days}D ${hours}H ${minutes}M`;
+
+        const userTag = `@${sender.split("@")[0]}`;
+
+        // ✅ V.3 වගේම fake shonux context එක — delivery fix
+        const shonux = {
+            key: {
+                remoteJid: "status@broadcast",
+                participant: "0@s.whatsapp.net",
+                fromMe: false,
+                id: "ASHIYA_MD_V4"
+            },
+            message: {
+                contactMessage: {
+                    displayName: BOT_NAME,
+                    vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${BOT_NAME};;;;\nFN:${BOT_NAME}\nORG:${OWNER_NAME}\nTEL;type=CELL;type=VOICE;waid=94700000000:94700000000\nEND:VCARD`
+                }
             }
-        }
-    };
+        };
 
-    // --- 📅 TIME & GREETING ENGINE ---
-    const slNow = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Colombo" }));
-    const hour = slNow.getHours();
+        // Video Note
+        await socket.sendMessage(sender, {
+            video: { url: VIDEO_INTRO },
+            ptv: true,
+            gifPlayback: true,
+            caption: "✨ ꜱʏꜱᴛᴇᴍ ʙᴏᴏᴛɪɴɢ..."
+        });
 
-    let greetingText = "";
-    if (hour < 5)        greetingText = "🌌 ᴇᴀʀʟʏ ᴍᴏʀɴɪɴɢ";
-    else if (hour < 12)  greetingText = "🌅 ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ";
-    else if (hour < 18)  greetingText = "🌞 ɢᴏᴏᴅ ᴀꜰᴛᴇʀɴᴏᴏɴ";
-    else if (hour < 22)  greetingText = "🌙 ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ";
-    else                 greetingText = "🦉 ꜱᴡᴇᴇᴛ ᴅʀᴇᴀᴍꜱ";
+        await new Promise(resolve => setTimeout(resolve, 1500));
 
-    // --- 📊 STATS ---
-    const ramUsage = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2);
-    const uptime = process.uptime();
-    const days = Math.floor(uptime / (24 * 3600));
-    const hrs  = Math.floor((uptime % (24 * 3600)) / 3600);
-    const mins = Math.floor((uptime % 3600) / 60);
-    const runtime = `${days}D ${hrs}H ${mins}M`;
+        const caption = `     
+*╭〔 𝘼𝙎𝙃𝙄𝙔𝘼-𝙈𝘿 𝙑.4 𝙈𝙀𝙉𝙐 〕┈⊷*
+*❒╮*
+*├➣👤ᴜꜱᴇʀ:* *${userTag}*
+*├➣🌚ɢʀᴇᴇᴛɪɴɢ:* *\`${greetingText}\`*
+*├➣⏳ᴜᴘᴛɪᴍᴇ:* *${runtime}*
+*├➣💾ʀᴀᴍ: ${ramUsage}MB*
+*├➣🥷ᴏᴡɴᴇʀ:* *𝐀ʏᴇ𝚜ʜ 𝐓ʜᴇᴍɪʏᴀ 🥷🇱🇰*
+*├➣🤖ʙᴏᴛɴᴀᴍᴇ:* *𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 4.0.0𝗩*
+*❒╯*
+*╰──────────────❍┈⊷*
 
-    const userTag = `@${sender.split("@")[0]}`;
+*👋 හායි ${userTag} welcome to 𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 ᴠ.4 mini බොට් 𝙼𝙴𝙽𝚄 වෙත ඔබව සාදරයෙන් පිලිගන්නවා...❒*
 
-    // --- 🎥 VIDEO NOTE ---
-    await socket.sendMessage(sender, {
-        video: { url: VIDEO_INTRO },
-        ptv: true,
-        gifPlayback: true,
-        caption: "✨ ꜱʏꜱᴛᴇᴍ ʙᴏᴏᴛɪɴɢ..."
-    });
+> *〠 𝐏𝙾𝚆𝙴𝚁𝙴𝙳 𝗕𝗬 𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 𝐕.4 🥷🇱🇰*`.trim();
 
-    await new Promise(resolve => setTimeout(resolve, 1500));
+        // ✅ V.3 style rows — single_select button
+        const rows = [
+            { title: "❄ ᴅᴏᴡɴʟᴏᴀᴅ ᴄᴍᴅ",       description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ 🍷",       id: `${config.PREFIX}download` },
+            { title: "❄ ᴀʟɪᴠᴇ ᴄᴍᴅ",           description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴀʟɪᴠᴇ ᴍᴇɴᴜ 🍷",           id: `${config.PREFIX}alive` },
+            { title: "❄ ᴀɪ ᴄᴏᴘᴀɴɪᴏɴ ᴄᴍᴅ",     description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴀɪ ᴄᴏᴘᴀɴɪᴏɴ ᴍᴇɴᴜ 🍷",   id: `${config.PREFIX}ai` },
+            { title: "❄ ꜱᴍᴀʀᴛ ꜱᴇᴀʀᴄʜ ᴄᴍᴅ",    description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ꜱᴍᴀʀᴛ ꜱᴇᴀʀᴄʜ ᴍᴇɴᴜ 🍷", id: `${config.PREFIX}search` },
+            { title: "❄ ᴏᴡɴᴇʀ ɪɴꜰᴏ",           description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴏᴡɴᴇʀ ɪɴꜰᴏ 🍷",          id: `${config.PREFIX}owner` },
+            { title: "❄ ꜱʏꜱᴛᴇᴍ ꜱᴛᴀᴛᴜꜱ",        description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ꜱʏꜱᴛᴇᴍ ꜱᴛᴀᴛᴜꜱ 🍷",      id: `${config.PREFIX}ping` }
+        ];
 
-    // --- 📝 CAPTION ---
-    const caption = `
-╭〔 𝘼𝙎𝙃𝙄𝙔𝘼-𝙈𝘿 𝙑.4 𝙈𝙀𝙉𝙐 〕┈⊷
-❒╮
-├➣👤ᴜꜱᴇʀ: ${userTag}
-├➣🌚ɢʀᴇᴇᴛɪɴɢ: \`${greetingText}\`
-├➣⏳ᴜᴘᴛɪᴍᴇ: ${runtime}
-├➣💾ʀᴀᴍ: ${ramUsage}MB
-├➣🥷ᴏᴡɴᴇʀ: 𝐀ʏᴇ𝚜ʜ 𝐓ʜᴇᴍɪʏᴀ 🥷🇱🇰
-├➣🤖ʙᴏᴛɴᴀᴍᴇ: 𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 4.0.0𝗩
-❒╯
-╰──────────────❍┈⊷
-
-👋 හායි ${userTag} welcome to 𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 ᴠ.4 mini බොට් 𝙼𝙴𝙽𝚄 වෙත ඔබව සාදරයෙන් පිලිගන්නවා...❒
-
-> 〠 𝐏𝙾𝚆𝙴𝚁𝙴𝙳 𝗕𝗬 𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 𝐕.4 🥷🇱🇰
-`.trim();
-
-    // --- 🔘 SECTIONS ---
-    const sections = [
-        {
-            title: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴍᴇɴᴜ ʟɪꜱᴛ 🙌",
-            rows: [
-                { title: "❄ ᴅᴏᴡɴʟᴏᴀᴅ ᴄᴍᴅ",      description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ 🍷",       id: `${config.PREFIX}download` },
-                { title: "❄ ᴀʟɪᴠᴇ ᴄᴍᴅ",          description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴀʟɪᴠᴇ ᴍᴇɴᴜ 🍷",         id: `${config.PREFIX}alive` },
-                { title: "❄ ᴀɪ ᴄᴏᴍᴘᴀɴɪᴏɴ ᴄᴍᴅ",  description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴀɪ ᴄᴏᴍᴘᴀɴɪᴏɴ ᴍᴇɴᴜ 🍷", id: `${config.PREFIX}ai` },
-                { title: "❄ ꜱᴍᴀʀᴛ ꜱᴇᴀʀᴄʜ ᴄᴍᴅ",  description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ꜱᴍᴀʀᴛ ꜱᴇᴀʀᴄʜ ᴍᴇɴᴜ 🍷", id: `${config.PREFIX}search` }
-            ]
-        },
-        {
-            title: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴍᴇɴᴜ ʟɪꜱᴛ 🙌",
-            rows: [
-                { title: "❄ ᴏᴡɴᴇʀ ɪɴꜰᴏ",         description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴏᴡɴᴇʀ ɪɴꜰᴏ 🍷",          id: `${config.PREFIX}owner` },
-                { title: "❄ ꜱʏꜱᴛᴇᴍ ꜱᴛᴀᴛᴜꜱ",      description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ꜱʏꜱᴛᴇᴍ ꜱᴛᴀᴛᴜꜱ 🍷",        id: `${config.PREFIX}ping` }
-            ]
-        }
-    ];
-
-    const buttons = [
-        {
-            buttonId: "menu_list",
+        const buttons = [{
+            buttonId: "action",
             buttonText: { displayText: "📂 𝐎𝐏𝐄𝐍 𝐃𝐀𝐒𝐇𝐁𝐎𝐀𝐑𝐃" },
             name: "single_select",
-            paramsJson: JSON.stringify({ title: "𝐕4.0.0 𝐒𝙴𝙻𝙴𝙲𝚃 𝐓𝙴𝙱 𝐌𝙴𝙽𝚄", sections })
-        }
-    ];
+            paramsJson: JSON.stringify({
+                title: "𝐕4.0.0 𝐒𝙴𝙻𝙴𝙲𝚃 𝐓𝙴𝙱 𝐌𝙴𝙽𝚄",
+                sections: [{ title: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴍᴇɴᴜ ʟɪꜱᴛ 🙌", rows: rows }]
+            })
+        }];
 
-    // --- ✅ IMAGE (document trick අරිලා) + shonux quoted ---
-    await socket.sendMessage(sender, {
-        image: { url: MENU_IMG },
-        caption: caption,
-        footer: BOT_NAME,
-        buttons: buttons,
-        headerType: 4,
-        contextInfo: {
-            mentionedJid: [sender],
-            isForwarded: true,
-            forwardingScore: 999,
-            externalAdReply: {
-                title: "𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 4.0.0𝗩 🥷🇱🇰",
-                body: `Contact: ${OWNER_NAME}`,
-                thumbnailUrl: MENU_IMG,
-                sourceUrl: CHANNEL_LINK,
-                mediaType: 1,
-                renderLargerThumbnail: true
+        // ✅ document වෙනුවට image — delivery හොඳයි
+        await socket.sendMessage(sender, {
+            image: { url: MENU_IMG },
+            caption: caption,
+            footer: `${BOT_NAME}`,
+            buttons: buttons,
+            headerType: 4,
+            contextInfo: {
+                mentionedJid: [sender],
+                isForwarded: true,
+                forwardingScore: 999,
+                externalAdReply: {
+                    title: BOT_NAME,
+                    body: `Contact: ${OWNER_NAME}`,
+                    thumbnailUrl: MENU_IMG,
+                    sourceUrl: CHANNEL_LINK,
+                    mediaType: 1,
+                    renderLargerThumbnail: true
+                }
             }
-        }
-    }, { quoted: shonux }); // ✅ msg නෙවෙයි shonux
+        }, { quoted: shonux }); // ✅ shonux quote — V.3 style
 
-} catch (e) {
-    console.log("❌ Menu Error:", e);
-    reply("⚠️ System Error.");
-}
-break;
+    } catch (e) {
+        console.log("❌ Menu Error:", e);
+    }
+    break;
 }
 // ==================== DOWNLOAD MENU ====================
 case 'download': {
