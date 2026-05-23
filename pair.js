@@ -3887,139 +3887,216 @@ END:VCARD` } }
 
 // 😂😂😂😂ase
 case 'menu': {
-    try { await socket.sendMessage(sender, { react: { text: "🍷", key: msg.key } }); } catch(e){}
-    
+    // ✅ Lock current chat id
+    const chatId = msg.key.remoteJid;
+
     try {
-        const fs = require('fs');
-        const path = require('path');
-        const axios = require('axios');
-        const ffmpeg = require('fluent-ffmpeg');
-        const ffmpegPath = require('ffmpeg-static');
-        if (ffmpegPath) ffmpeg.setFfmpegPath(ffmpegPath);
 
-        const startTime = socketCreationTime.get(number) || Date.now();
-        const uptime = Math.floor((Date.now() - startTime) / 1000);
-        const hours = Math.floor(uptime / 3600);
-        const minutes = Math.floor((uptime % 3600) / 60);
-        const seconds = Math.floor(uptime % 60);
-     
-        const pushname = msg.pushName || 'User';
-      
-        let userCfg = {};
-        try { if (number && typeof loadUserConfigFromMongo === 'function') userCfg = await loadUserConfigFromMongo((number || '').replace(/[^0-9]/g, '')) || {}; }
-        catch(e){ userCfg = {}; }
-
-        const title = userCfg.botName || '𝐀𝚂𝙷𝙸𝚈𝙰-〽️𝙳 𝐕.3 ᴍᴇɴᴜ';
-        
-        const MenuImg = 'https://files.catbox.moe/huru78.jpeg';
-        const SecondaryImg = 'https://files.catbox.moe/huru78.jpeg';
-        const ashiyaPDF = 'https://ashiy-md-v3-mini-bot-780e30dfaa2d.herokuapp.com/';         
-        const voiceUrl = 'https://files.catbox.moe/kllut3.mp3'; 
-
-        // 🎥 Video Note (PTV)
-        await socket.sendMessage(sender, {
-            video: { url: 'https://files.catbox.moe/ju6wqp.mp4' },
-            ptv: true 
+        await socket.sendMessage(chatId, {
+            react: {
+                text: "🍷",
+                key: msg.key
+            }
         });
 
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        // --- ⚙️ BOT CONFIGURATION ---
+        const BOT_NAME = '𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 4.0.0𝗩 🥷🇱🇰';
+        const OWNER_NAME = '𝐀ʏᴇꜱʜ 𝐓ʜᴇᴍɪʏᴀ 🥷🇱🇰';
 
-        const shonux = {
-            key: { remoteJid: "status@broadcast", participant: "0@s.whatsapp.net", fromMe: false, id: "ASHIYA_MD_V3" },
-            message: { contactMessage: { displayName: title, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${title};;;;\nFN:${title}\nORG:Queen Imalsha\nTEL;type=CELL;type=VOICE;waid=94700000000:94700000000\nEND:VCARD` } }
-        };
+        const CHANNEL_LINK =
+            "https://whatsapp.com/channel/0029VbC3JfG77qVXz1CbJM3l";
 
-        const date = new Date();
-        const slstDate = new Date(date.toLocaleString("en-US", { timeZone: "Asia/Colombo" }));
-        const hour = slstDate.getHours();
-        const greetings = hour < 12 ? 'සුභ උදෑසනක් 🌄' : hour < 17 ? 'සුභ දහවලක් 🏞️' : hour < 20 ? 'සුභ හැන්දෑවක් 🌅' : 'සුභ රාත්‍රියක් 🌌';
+        const MENU_IMG =
+            "https://files.catbox.moe/qb2puf.jpeg";
 
-        const text = `
-*╭〔 𝘼𝙎𝙃𝙄𝙔𝘼-𝙈𝘿 𝙑.3 𝙈𝙀𝙉𝙐 〕┈⊷*
+        const VIDEO_INTRO =
+            'https://files.catbox.moe/ju6wqp.mp4';
+
+        // --- 📅 TIME & GREETING ENGINE ---
+        const slNow = new Date(
+            new Date().toLocaleString("en-US", {
+                timeZone: "Asia/Colombo"
+            })
+        );
+
+        const hour = slNow.getHours();
+
+        // --- 🎨 GREETING ---
+        let greetingText = "";
+
+        if (hour < 5)
+            greetingText = "🌌 ᴇᴀʀʟʏ ᴍᴏʀɴɪɴɢ";
+        else if (hour < 12)
+            greetingText = "🌅 ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ";
+        else if (hour < 18)
+            greetingText = "🌞 ɢᴏᴏᴅ ᴀꜰᴛᴇʀɴᴏᴏɴ";
+        else if (hour < 22)
+            greetingText = "🌙 ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ";
+        else
+            greetingText = "🦉 ꜱᴡᴇᴇᴛ ᴅʀᴇᴀᴍꜱ";
+
+        // --- 📊 SYSTEM STATS ---
+        const ramUsage =
+            (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2);
+
+        const uptime = process.uptime();
+
+        const days = Math.floor(uptime / (24 * 3600));
+
+        const upHours = Math.floor(
+            (uptime % (24 * 3600)) / 3600
+        );
+
+        const upMinutes = Math.floor(
+            (uptime % 3600) / 60
+        );
+
+        const runtime =
+            `${days}D ${upHours}H ${upMinutes}M`;
+
+        // ✅ Safe user tag
+        const userTag = `@${chatId.split("@")[0]}`;
+
+        // --- 🎥 VIDEO NOTE ---
+        await socket.sendMessage(chatId, {
+            video: { url: VIDEO_INTRO },
+            ptv: true,
+            gifPlayback: true,
+            caption: "✨ ꜱʏꜱᴛᴇᴍ ʙᴏᴏᴛɪɴɢ..."
+        });
+
+        // --- 📝 MENU CAPTION ---
+        const caption = `
+*╭〔 𝘼𝙎𝙃𝙄𝙔𝘼-𝙈𝘿 𝙑.4 𝙈𝙀𝙉𝙐 〕┈⊷*
 *❒╮*
-*├➣👤ᴜꜱᴇʀ:* *${pushname}*
-*├➣🌚ɢʀᴇᴇᴛɪɴɢ:* *\`${greetings}\`*
-*├➣⏳ᴜᴘᴛɪᴍᴇ:* *${hours}ʜ ${minutes}ᴍ ${seconds}ꜱ*
-*├➣🥷ᴏᴡɴᴇʀ:* *𝐀ʏᴇ𝚜ʜ 𝐓ʜᴇᴍɪʏᴀ 🥷🇱🇰*
-*├➣🤖ʙᴏᴛɴᴀᴍᴇ:* *𝐀𝚂𝙷𝙸𝚈𝙰-〽️𝙳 𝐕.3*
+*├➣👤ᴜꜱᴇʀ:* *${userTag}*
+*├➣🌚ɢʀᴇᴇᴛɪɴɢ:* *\`${greetingText}\`*
+*├➣⏳ᴜᴘᴛɪᴍᴇ:* *${runtime}*
+*├➣💾ʀᴀᴍ:* *${ramUsage}MB*
+*├➣🥷ᴏᴡɴᴇʀ:* *${OWNER_NAME}*
+*├➣🤖ʙᴏᴛɴᴀᴍᴇ:* *${BOT_NAME}*
 *❒╯*
 *╰──────────────❍┈⊷*
 
-*👋හායි bro _𝐀𝚂𝙷𝙸𝚈𝙰-〽️𝙳 𝐕.3_ බොට් 𝙼𝙴𝙽𝚄 වෙත ඔබව සාදරයෙන් පිලිගන්නවා...❒*`.trim();
+*👋 හායි ${userTag} welcome to 𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 ᴠ.4 mini බොට් 𝙼𝙴𝙽𝚄 වෙත ඔබව සාදරයෙන් පිලිගන්නවා...❒*
 
-        let rows = [         
-            { title: "❄ ᴅᴏᴡɴʟᴏᴀᴅ ᴄᴍᴅ", description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 V3.0.0 ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ🍷", id: `${config.PREFIX}download` },
-            { title: "❄ ᴄʀᴇᴛɪᴠᴇ ᴄᴍᴅ", description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 V3.0.0 ᴄʀᴇᴀᴛɪᴠᴇ ᴍᴇɴᴜ🍷", id: `${config.PREFIX}creative` },
-            { title: "❄ ᴛᴏᴏʟ ᴄᴍᴅ", description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 V3.0.0 ᴛᴏᴏʟ ᴍᴇɴᴜ🍷", id: `${config.PREFIX}tool` },
-            { title: "❄ ꜱᴇᴛᴛɪɴɢꜱ ᴄᴍᴅ", description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 V3.0.0 ʙᴏᴛ ꜱᴇᴛᴛɪɴɢꜱ🍷", id: `${config.PREFIX}settings` },
-            { title: "❄ ᴀʟɪᴠᴇ ᴄᴍᴅ", description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 V3.0.0 ᴀʟɪᴠᴇ ᴍᴇɴᴜ🍷", id: `${config.PREFIX}download` },
-            { title: "❄ ᴏᴡɴᴇʀ ɪɴꜰᴏ", description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 V3.0.0 ᴏᴡɴᴇʀ ɪɴꜰᴘ🍷", id: `${config.PREFIX}owner` },
-            { title: "❄ ᴘɪɴɢ ᴄᴍᴅ", description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 V3.0.0 ʙᴏᴛ ꜱᴘᴇᴇᴅ🍷", id: `${config.PREFIX}ping` }
+> *〠 𝐏𝙾𝚆𝙴𝚁𝙴𝙳 𝗕𝗬 𝐀𝚂𝙷𝙄𝚈𝙰-𝐌𝙳 𝐕.4 🥷🇱🇰*
+`.trim();
+
+        // --- 🔘 MENU SECTIONS ---
+        const sections = [
+            {
+                title: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴍᴇɴᴜ ʟɪꜱᴛ 🙌",
+                rows: [
+                    {
+                        title: "❄ ᴅᴏᴡɴʟᴏᴀᴅ ᴄᴍᴅ",
+                        description: "𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳 𝙼𝙴𝙽𝚄 🍷",
+                        id: `${config.PREFIX}download`
+                    },
+                    {
+                        title: "❄ ᴀʟɪᴠᴇ ᴄᴍᴅ",
+                        description: "𝙰𝙻𝙸𝚅𝙴 𝙼𝙴𝙽𝚄 🍷",
+                        id: `${config.PREFIX}alive`
+                    },
+                    {
+                        title: "❄ ᴀɪ ᴄᴏᴘᴀɴɪᴏɴ ᴄᴍᴅ",
+                        description: "𝙰𝙸 𝙼𝙴𝙽𝚄 🍷",
+                        id: `${config.PREFIX}ai`
+                    },
+                    {
+                        title: "❄ ꜱᴍᴀʀᴛ ꜱᴇᴀʀᴄʜ ᴄᴍᴅ",
+                        description: "𝚂𝙴𝙰𝚁𝙲𝙷 𝙼𝙴𝙽𝚄 🍷",
+                        id: `${config.PREFIX}search`
+                    }
+                ]
+            },
+            {
+                title: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ꜱʏꜱᴛᴇᴍ 🙌",
+                rows: [
+                    {
+                        title: "❄ ᴏᴡɴᴇʀ ɪɴꜰᴏ",
+                        description: "𝙾𝚆𝙽𝙴𝚁 𝙸𝙽𝙵𝙾 🍷",
+                        id: `${config.PREFIX}owner`
+                    },
+                    {
+                        title: "❄ ꜱʏꜱᴛᴇᴍ ꜱᴛᴀᴛᴜꜱ",
+                        description: "𝚂𝚈𝚂𝚃𝙴𝙼 𝚂𝚃𝙰𝚃𝚄𝚂 🍷",
+                        id: `${config.PREFIX}ping`
+                    }
+                ]
+            }
         ];
 
-        let buttons = [{
-            buttonId: "action",
-            buttonText: { displayText: "Sᴇʟᴇᴄᴛ Mᴇɴᴜ" },
-            name: "single_select",
-            paramsJson: JSON.stringify({
-                title: "𝐕3.0.0 𝐒𝐄𝐋𝐄𝐂𝐓 𝐓𝐄𝐁 𝐌𝐄𝐍𝐔",
-                sections: [{ title: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴍᴇɴᴜ ʟɪꜱᴛ", rows: rows }]
-            })
-        }];
-
-        // Sending Main Menu Message
-        await socket.sendMessage(sender, {
-            image: { url: MenuImg }, 
-            caption: text,
-            footer: '𝐀𝚂𝙷𝙸𝚈𝙰-〽️𝙳 𝐕.3 🥷🇱🇰',
-            buttons: buttons,
-            headerType: 4,
-            contextInfo: {
-                mentionedJid: [sender],
-                forwardingScore: 999,
-                isForwarded: true,
-               // 𝗹𝗶𝗻𝗸 𝗺𝗻𝘂 🙌🌚
+        // --- 🔘 BUTTONS ---
+        const buttons = [
+            {
+                buttonId: "menu_list",
+                buttonText: {
+                    displayText: "📂 𝐎𝐏𝐄𝐍 𝐃𝐀𝐒𝐇𝐁𝐎𝐀𝐑𝐃"
+                },
+                name: "single_select",
+                paramsJson: JSON.stringify({
+                    title: "𝐕4.0.0 𝐒𝙴𝙻𝙴𝙲𝚃 𝐓𝙴𝙱 𝐌𝙴𝙽𝚄",
+                    sections
+                })
             }
-        }, { quoted: shonux });
+        ];
 
-        // 🎵 Voice Note Section with AdReply (Design Added)
-        if (voiceUrl) {
-            try {
-                const tempMp3 = path.join(__dirname, `temp_${Date.now()}.mp3`);
-                const tempOpus = path.join(__dirname, `temp_${Date.now()}.opus`);
-                const resp = await axios({ method: 'get', url: voiceUrl, responseType: 'stream' });
-                const writer = fs.createWriteStream(tempMp3);
-                resp.data.pipe(writer);
-                await new Promise((resolve) => writer.on('finish', resolve));
-                await new Promise((resolve, reject) => {
-                    ffmpeg(tempMp3).noVideo().audioCodec('libopus').format('opus').on('end', resolve).on('error', reject).save(tempOpus);
-                });
-                if (fs.existsSync(tempOpus)) {
-                    await socket.sendMessage(sender, { 
-                        audio: fs.readFileSync(tempOpus), 
-                        mimetype: 'audio/ogg; codecs=opus', 
-                        ptt: true,
-                        contextInfo: { // මෙතනින් තමයි Voice Note එකටත් Design එක එකතු කරන්නේ
-                            externalAdReply: {
-                                title: `Playing: ${title}`,
-                                body: 'ASHIYA-MD V3 Voice Menu 🍷',
-                                mediaType: 1,
-                                thumbnailUrl: MenuImg, // මෙතනටත් අර Image එකම දැම්මා
-                                sourceUrl: ashiyaPDF,
-                                renderLargerThumbnail: true,
-                                showAdAttribution: true
-                            }
-                        }
-                    }, { quoted: shonux });
-                    fs.unlinkSync(tempMp3);
-                    fs.unlinkSync(tempOpus);
+        // --- 📤 MAIN MENU SEND ---
+        await socket.sendMessage(chatId, {
+
+            document: { url: MENU_IMG },
+
+            mimetype: "application/pdf",
+
+            fileName: `${BOT_NAME} 📂`,
+
+            pageCount: 9999,
+
+            fileLength: 99999999999999,
+
+            caption: caption,
+
+            buttons: buttons,
+
+            headerType: 4,
+
+            contextInfo: {
+                mentionedJid: [chatId],
+
+                forwardingScore: 999,
+
+                isForwarded: true,
+
+                externalAdReply: {
+                    title: BOT_NAME,
+
+                    body: `Contact: ${OWNER_NAME}`,
+
+                    thumbnailUrl: MENU_IMG,
+
+                    sourceUrl: CHANNEL_LINK,
+
+                    mediaType: 1,
+
+                    renderLargerThumbnail: true
                 }
-            } catch(e) {}
-        }
+            }
 
-    } catch (err) {
-        console.error('Menu error:', err);
+        }, {
+            quoted: msg
+        });
+
+    } catch (e) {
+
+        console.log("❌ Menu Error:", e);
+
+        await socket.sendMessage(chatId, {
+            text: "⚠️ System Error."
+        });
+
     }
+
     break;
 }
 // ==================== DOWNLOAD MENU ====================
