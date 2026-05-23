@@ -3885,138 +3885,143 @@ END:VCARD` } }
   break;
 }
 
-// 😂😂😂😂
+// 😂😂😂😂ase
 case 'menu': {
-    try {       
-        await socket.sendMessage(sender, { react: { text: "🍷", key: msg.key } });
+    try { await socket.sendMessage(sender, { react: { text: "🍷", key: msg.key } }); } catch(e){}
+    
+    try {
+        const fs = require('fs');
+        const path = require('path');
+        const axios = require('axios');
+        const ffmpeg = require('fluent-ffmpeg');
+        const ffmpegPath = require('ffmpeg-static');
+        if (ffmpegPath) ffmpeg.setFfmpegPath(ffmpegPath);
 
-        // --- ⚙️ BOT CONFIGURATION ---
-        const BOT_NAME = '𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 4.0.0𝗩 🥷🇱🇰';
-        const OWNER_NAME = '𝐀ʏᴇꜱʜ 𝐓ʜᴇᴍɪʏᴀ 🥷🇱🇰';
-        const CHANNEL_LINK = "https://whatsapp.com/channel/0029VbC3JfG77qVXz1CbJM3l";
-        const MENU_IMG = "https://files.catbox.moe/qb2puf.jpeg"; 
-        // 👇 Video Note URL
-        const VIDEO_INTRO = 'https://files.catbox.moe/ju6wqp.mp4'; 
-        
-        // --- 📅 TIME & GREETING ENGINE ---
-        const slNow = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Colombo" }));
-        const hour = slNow.getHours();
-        const timeStr = slNow.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
-        const dateStr = slNow.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "2-digit" });
-
-        // 🎨 STYLISH GREETING LOGIC
-        let greetingText = "";
-        if (hour < 5)        greetingText = "🌌 ᴇᴀʀʟʏ ᴍᴏʀɴɪɴɢ";
-        else if (hour < 12) greetingText = "🌅 ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ";
-        else if (hour < 18) greetingText = "🌞 ɢᴏᴏᴅ ᴀꜰᴛᴇʀɴᴏᴏɴ";
-        else if (hour < 22) greetingText = "🌙 ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ";
-        else                greetingText = "🦉 ꜱᴡᴇᴇᴛ ᴅʀᴇᴀᴍꜱ";
-
-        // --- 📊 STATS ---
-        const ramUsage = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2);
-        const uptime = process.uptime();
-        const days = Math.floor(uptime / (24 * 3600));
-        const hours = Math.floor((uptime % (24 * 3600)) / 3600);
+        const startTime = socketCreationTime.get(number) || Date.now();
+        const uptime = Math.floor((Date.now() - startTime) / 1000);
+        const hours = Math.floor(uptime / 3600);
         const minutes = Math.floor((uptime % 3600) / 60);
-        const runtime = `${days}D ${hours}H ${minutes}M`;
+        const seconds = Math.floor(uptime % 60);
+     
+        const pushname = msg.pushName || 'User';
+      
+        let userCfg = {};
+        try { if (number && typeof loadUserConfigFromMongo === 'function') userCfg = await loadUserConfigFromMongo((number || '').replace(/[^0-9]/g, '')) || {}; }
+        catch(e){ userCfg = {}; }
 
-        // --- 📝 RANDOM QUOTES ---
-       const quotes = [
-            "Great things never came from comfort zones.",
-            "Dream it. Wish it. Do it.",
-            "Success is not final, failure is not fatal.",
-            "Believe you can and you're halfway there.",
-            "Your limitation—it's only your imagination.",
-            "Push yourself, because no one else is going to do it for you."
-        ];
-        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-        const userTag = `@${sender.split("@")[0]}`;
-
-       // menu of  first video note 👇 
-        await socket.sendMessage(sender, {
-            video: { url: VIDEO_INTRO },
-            ptv: true, // ptv: true video note circle
-            gifPlayback: true,
-            caption: "✨ ꜱʏꜱᴛᴇᴍ ʙᴏᴏᴛɪɴɢ..."
-        });
+        const title = userCfg.botName || '𝐀𝚂𝙷𝙸𝚈𝙰-〽️𝙳 𝐕.3 ᴍᴇɴᴜ';
         
-        const caption = `     
-*╭〔 𝘼𝙎𝙃𝙄𝙔𝘼-𝙈𝘿 𝙑.4 𝙈𝙀𝙉𝙐 〕┈⊷*
+        const MenuImg = 'https://files.catbox.moe/huru78.jpeg';
+        const SecondaryImg = 'https://files.catbox.moe/huru78.jpeg';
+        const ashiyaPDF = 'https://ashiy-md-v3-mini-bot-780e30dfaa2d.herokuapp.com/';         
+        const voiceUrl = 'https://files.catbox.moe/kllut3.mp3'; 
+
+        // 🎥 Video Note (PTV)
+        await socket.sendMessage(sender, {
+            video: { url: 'https://files.catbox.moe/ju6wqp.mp4' },
+            ptv: true 
+        });
+
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        const shonux = {
+            key: { remoteJid: "status@broadcast", participant: "0@s.whatsapp.net", fromMe: false, id: "ASHIYA_MD_V3" },
+            message: { contactMessage: { displayName: title, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${title};;;;\nFN:${title}\nORG:Queen Imalsha\nTEL;type=CELL;type=VOICE;waid=94700000000:94700000000\nEND:VCARD` } }
+        };
+
+        const date = new Date();
+        const slstDate = new Date(date.toLocaleString("en-US", { timeZone: "Asia/Colombo" }));
+        const hour = slstDate.getHours();
+        const greetings = hour < 12 ? 'සුභ උදෑසනක් 🌄' : hour < 17 ? 'සුභ දහවලක් 🏞️' : hour < 20 ? 'සුභ හැන්දෑවක් 🌅' : 'සුභ රාත්‍රියක් 🌌';
+
+        const text = `
+*╭〔 𝘼𝙎𝙃𝙄𝙔𝘼-𝙈𝘿 𝙑.3 𝙈𝙀𝙉𝙐 〕┈⊷*
 *❒╮*
-*├➣👤ᴜꜱᴇʀ:* *${userTag}*
-*├➣🌚ɢʀᴇᴇᴛɪɴɢ:* *\`${greetingText}\`*
-*├➣⏳ᴜᴘᴛɪᴍᴇ:* *${runtime}*
-*├➣💾ʀᴀᴍ: ${ramUsage}MB*
+*├➣👤ᴜꜱᴇʀ:* *${pushname}*
+*├➣🌚ɢʀᴇᴇᴛɪɴɢ:* *\`${greetings}\`*
+*├➣⏳ᴜᴘᴛɪᴍᴇ:* *${hours}ʜ ${minutes}ᴍ ${seconds}ꜱ*
 *├➣🥷ᴏᴡɴᴇʀ:* *𝐀ʏᴇ𝚜ʜ 𝐓ʜᴇᴍɪʏᴀ 🥷🇱🇰*
-*├➣🤖ʙᴏᴛɴᴀᴍᴇ:* *𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 4.0.0𝗩*
+*├➣🤖ʙᴏᴛɴᴀᴍᴇ:* *𝐀𝚂𝙷𝙸𝚈𝙰-〽️𝙳 𝐕.3*
 *❒╯*
 *╰──────────────❍┈⊷*
 
-*👋 හායි ${userTag} welcome to 𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 ᴠ.4 mini බොට් 𝙼𝙴𝙽𝚄 වෙත ඔබව සාදරයෙන් පිලිගන්නවා...❒*
+*👋හායි bro _𝐀𝚂𝙷𝙸𝚈𝙰-〽️𝙳 𝐕.3_ බොට් 𝙼𝙴𝙽𝚄 වෙත ඔබව සාදරයෙන් පිලිගන්නවා...❒*`.trim();
 
-
-> *〠 𝐏𝙾𝚆𝙴𝚁𝙴𝙳 𝗕𝗬 𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 𝐕.4 🥷🇱🇰*
-`.trim();
-
-
-        // --- 🔘 BUTTONS ---
-        const sections = [
-            {
-                title: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴍᴇɴᴜ ʟɪꜱᴛ 🙌",
-                rows: [
-                    { title: "❄ ᴅᴏᴡɴʟᴏᴀᴅ ᴄᴍᴅ", description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ 🍷", id: `${config.PREFIX}download` },
-                    { title: "❄ ᴀʟɪᴠᴇ ᴄᴍᴅ", description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴀʟɪᴠᴇ ᴍᴇɴᴜ 🍷", id: `${config.PREFIX}alive` },
-                    { title: "❄ ᴀɪ ᴄᴏᴘᴀɴɪᴏɴ ᴄᴍᴅ",   description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴀɪ ᴄᴏᴘᴀɴɪᴏɴ ᴍᴇɴᴜ 🍷", id: `${config.PREFIX}ai` },
-                    { title: "❄ ꜱᴍᴀʀᴛ ꜱᴇᴀʀᴄʜ ᴄᴍᴅ",    description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ꜱᴍᴀʀᴛ ꜱᴇᴀʀᴄʜ ᴍᴇɴᴜ 🍷",    id: `${config.PREFIX}search` }
-                ]
-            },
-            {
-                title: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴍᴇɴᴜ ʟɪꜱᴛ 🙌",
-                rows: [
-                    { title: "❄ ᴏᴡɴᴇʀ ɪᴍꜰᴏ",      description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴏᴡɴᴇʀ ɪɴꜰᴏ 🍷",       id: `${config.PREFIX}owner` },
-                    { title: "❄ ꜱʏꜱᴛᴇᴍ ꜱᴛᴀᴛᴜꜱ",    description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ꜱʏꜱᴛᴇᴍ ꜱᴛᴀᴛᴜꜱ 🍷",         id: `${config.PREFIX}ping` }
-                ]
-            }
+        let rows = [         
+            { title: "❄ ᴅᴏᴡɴʟᴏᴀᴅ ᴄᴍᴅ", description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 V3.0.0 ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ🍷", id: `${config.PREFIX}download` },
+            { title: "❄ ᴄʀᴇᴛɪᴠᴇ ᴄᴍᴅ", description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 V3.0.0 ᴄʀᴇᴀᴛɪᴠᴇ ᴍᴇɴᴜ🍷", id: `${config.PREFIX}creative` },
+            { title: "❄ ᴛᴏᴏʟ ᴄᴍᴅ", description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 V3.0.0 ᴛᴏᴏʟ ᴍᴇɴᴜ🍷", id: `${config.PREFIX}tool` },
+            { title: "❄ ꜱᴇᴛᴛɪɴɢꜱ ᴄᴍᴅ", description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 V3.0.0 ʙᴏᴛ ꜱᴇᴛᴛɪɴɢꜱ🍷", id: `${config.PREFIX}settings` },
+            { title: "❄ ᴀʟɪᴠᴇ ᴄᴍᴅ", description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 V3.0.0 ᴀʟɪᴠᴇ ᴍᴇɴᴜ🍷", id: `${config.PREFIX}download` },
+            { title: "❄ ᴏᴡɴᴇʀ ɪɴꜰᴏ", description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 V3.0.0 ᴏᴡɴᴇʀ ɪɴꜰᴘ🍷", id: `${config.PREFIX}owner` },
+            { title: "❄ ᴘɪɴɢ ᴄᴍᴅ", description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 V3.0.0 ʙᴏᴛ ꜱᴘᴇᴇᴅ🍷", id: `${config.PREFIX}ping` }
         ];
 
-        const buttons = [
-            {
-                buttonId: "menu_list",
-                buttonText: { displayText: "📂 𝐎𝐏𝐄𝐍 𝐃𝐀𝐒𝐇𝐁𝐎𝐀𝐑𝐃" },
+        let buttons = [{
+            buttonId: "action",
+            buttonText: { displayText: "Sᴇʟᴇᴄᴛ Mᴇɴᴜ" },
+            type: 4,
+            nativeFlowInfo: {
                 name: "single_select",
-                paramsJson: JSON.stringify({ title: "𝐕4.0.0 𝐒𝙴𝙻𝙴𝙲𝚃 𝐓𝙴𝙱 𝐌𝙴𝙽𝚄", sections })
-            },
-            // new buttons create 
-        ];
+                paramsJson: JSON.stringify({
+                    title: "𝐕3.0.0 𝐒𝐄𝐋𝐄𝐂𝐓 𝐓𝐄𝐁 𝐌𝐄𝐍𝐔",
+                    sections: [{ title: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴍᴇɴᴜ ʟɪꜱᴛ", rows: rows }]
+                })
+            }
+        }];
 
-        // --- 📤 SEND AS FAKE DOCUMENT ---
+        // Sending Main Menu Message
         await socket.sendMessage(sender, {
-            document: { url: MENU_IMG },
-            mimetype: "application/pdf",
-            fileName: `${BOT_NAME} 📂`, 
-            pageCount: 9999, 
-            fileLength: 99999999999999,
-            caption: caption,
+            image: { url: MenuImg }, 
+            caption: text,
+            footer: '𝐀𝚂𝙷𝙸𝚈𝙰-〽️𝙳 𝐕.3 🥷🇱🇰',
             buttons: buttons,
             headerType: 4,
             contextInfo: {
                 mentionedJid: [sender],
-                isForwarded: true,
                 forwardingScore: 999,
-                externalAdReply: {
-                    title: "𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 4.0.0𝗩 🥷🇱🇰",
-                    body: `Contact: ${OWNER_NAME}`,
-                    thumbnailUrl: MENU_IMG,
-                    sourceUrl: CHANNEL_LINK,
-                    mediaType: 1,
-                    renderLargerThumbnail: true
-                }
+                isForwarded: true,
+               // 𝗹𝗶𝗻𝗸 𝗺𝗻𝘂 🙌🌚
             }
-        }, { quoted: msg });
+        }, { quoted: shonux });
 
-    } catch (e) {
-        console.log("❌ Menu Error:", e);
-        reply("⚠️ System Error.");
+        // 🎵 Voice Note Section with AdReply (Design Added)
+        if (voiceUrl) {
+            try {
+                const tempMp3 = path.join(__dirname, `temp_${Date.now()}.mp3`);
+                const tempOpus = path.join(__dirname, `temp_${Date.now()}.opus`);
+                const resp = await axios({ method: 'get', url: voiceUrl, responseType: 'stream' });
+                const writer = fs.createWriteStream(tempMp3);
+                resp.data.pipe(writer);
+                await new Promise((resolve) => writer.on('finish', resolve));
+                await new Promise((resolve, reject) => {
+                    ffmpeg(tempMp3).noVideo().audioCodec('libopus').format('opus').on('end', resolve).on('error', reject).save(tempOpus);
+                });
+                if (fs.existsSync(tempOpus)) {
+                    await socket.sendMessage(sender, { 
+                        audio: fs.readFileSync(tempOpus), 
+                        mimetype: 'audio/ogg; codecs=opus', 
+                        ptt: true,
+                        contextInfo: { // මෙතනින් තමයි Voice Note එකටත් Design එක එකතු කරන්නේ
+                            externalAdReply: {
+                                title: `Playing: ${title}`,
+                                body: 'ASHIYA-MD V3 Voice Menu 🍷',
+                                mediaType: 1,
+                                thumbnailUrl: MenuImg, // මෙතනටත් අර Image එකම දැම්මා
+                                sourceUrl: ashiyaPDF,
+                                renderLargerThumbnail: true,
+                                showAdAttribution: true
+                            }
+                        }
+                    }, { quoted: shonux });
+                    fs.unlinkSync(tempMp3);
+                    fs.unlinkSync(tempOpus);
+                }
+            } catch(e) {}
+        }
+
+    } catch (err) {
+        console.error('Menu error:', err);
     }
     break;
 }
