@@ -3259,8 +3259,8 @@ END:VCARD` } }
 
     // 5. Button System
     const buttons = [
-        { buttonId: `${config.PREFIX}menu`, buttonText: { displayText: "📜 𝐁𝙾𝚃 𝐌𝙴𝙽𝚄" }, type: 1 },
-        { buttonId: `${config.PREFIX}ping`, buttonText: { displayText: "📶 𝐒𝙿𝙴𝙴𝙴 𝐓𝙴𝚂𝚁" }, type: 1 }
+        { buttonId: `${config.PREFIX}menu`, buttonText: { displayText: "📑 𝘽𝙊𝙏 𝙈𝙀𝙉𝙐" }, type: 1 },
+        { buttonId: `${config.PREFIX}ping`, buttonText: { displayText: "📶 𝙎𝙋𝙀𝙀 𝙏𝙀𝙎𝙍" }, type: 1 }
     ];
 
     let imagePayload = String(logo).startsWith('http') ? { url: logo } : fs.readFileSync(logo);
