@@ -4002,7 +4002,8 @@ case 'menu': {
           { title: "❄ ᴍᴀɪɴ ᴄᴍᴅ",           description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴍᴀɪɴ ᴍᴇɴᴜ 🍷",           id: `${config.PREFIX}mainmenu` },
           { title: "❄ ᴏᴡɴᴇʀ ᴄᴍᴅ",          description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴏᴡɴᴇʀ ᴍᴇɴᴜ 🍷",          id: `${config.PREFIX}ownermenu` },
           { title: "❄ ɢʀᴏᴜᴘ ᴄᴍᴅ",          description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ɢʀᴏᴜᴘ ᴍᴇɴᴜ 🍷",          id: `${config.PREFIX}groupmenu` },
-          { title: "❄ ɴᴇᴡꜱ ᴄᴍᴅ",           description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ɴᴇᴡꜱ ᴍᴇɴᴜ 🍷",           id: `${config.PREFIX}newsmenu` }
+          { title: "❄ ɴᴇᴡꜱ ᴄᴍᴅ",           description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ɴᴇᴡꜱ ᴍᴇɴᴜ 🍷",           id: `${config.PREFIX}newsmenu` },
+		  { title: "❄ ꜱᴇᴛᴛɪɴɢꜱ ᴄᴍᴅ",        description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ꜱᴇᴛᴛɪɴɢꜱ ᴍᴇɴᴜ 🍷",        id: `${config.PREFIX}settings` }
         ]
       }
     ];
@@ -4012,7 +4013,7 @@ case 'menu': {
         buttonId: "action",
         buttonText: { displayText: "Click Here ❏" },
         name: "single_select",
-        paramsJson: JSON.stringify({ title: "Select Category ❏", sections })
+        paramsJson: JSON.stringify({ title: "📁 𝐒𝐄𝐋𝐄𝐂𝐓 𝐓𝐄𝐁 𝐌𝐄𝐍𝐔", sections })
       }
     ];
 
