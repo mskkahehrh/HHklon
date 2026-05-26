@@ -3991,20 +3991,20 @@ case 'menu': {
       {
         title: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴍᴇɴᴜ ʟɪꜱᴛ 🙌",
         rows: [
-          { title: "❄ ᴅᴏᴡɴʟᴏᴀᴅ ᴄᴍᴅ",      description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ 🍷",      id: `${config.PREFIX}downloadmenu` },
-          { title: "❄ ᴀɪ ᴄᴍᴅ",             description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴀɪ ᴍᴇɴᴜ 🍷",             id: `${config.PREFIX}aimenu` },
-          { title: "❄ ꜱᴇᴀʀᴄʜ ᴄᴍᴅ",         description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ꜱᴇᴀʀᴄʜ ᴍᴇɴᴜ 🍷",         id: `${config.PREFIX}searchmenu` },
-          { title: "❄ ᴏᴛʜᴇʀ ᴄᴍᴅ",          description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴏᴛʜᴇʀ ᴍᴇɴᴜ 🍷",          id: `${config.PREFIX}othermenu` }
+          { title: "❄ ᴅᴏᴡɴʟᴏᴀᴅ ᴄᴍᴅ",      description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ 📥",      id: `${config.PREFIX}downloadmenu` },
+          { title: "❄ ᴀɪ ᴄᴍᴅ",             description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴀɪ ᴍᴇɴᴜ ✨",             id: `${config.PREFIX}aimenu` },
+          { title: "❄ ꜱᴇᴀʀᴄʜ ᴄᴍᴅ",         description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ꜱᴇᴀʀᴄʜ ᴍᴇɴᴜ 🔍",         id: `${config.PREFIX}searchmenu` },
+          { title: "❄ ᴏᴛʜᴇʀ ᴄᴍᴅ",          description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴏᴛʜᴇʀ ᴍᴇɴᴜ 📑",          id: `${config.PREFIX}othermenu` }
         ]
       },
       {
         title: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴍᴇɴᴜ ʟɪꜱᴛ 🙌",
         rows: [
-          { title: "❄ ᴍᴀɪɴ ᴄᴍᴅ",           description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴍᴀɪɴ ᴍᴇɴᴜ 🍷",           id: `${config.PREFIX}mainmenu` },
-          { title: "❄ ᴏᴡɴᴇʀ ᴄᴍᴅ",          description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴏᴡɴᴇʀ ᴍᴇɴᴜ 🍷",          id: `${config.PREFIX}ownermenu` },
-          { title: "❄ ɢʀᴏᴜᴘ ᴄᴍᴅ",          description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ɢʀᴏᴜᴘ ᴍᴇɴᴜ 🍷",          id: `${config.PREFIX}groupmenu` },
-          { title: "❄ ɴᴇᴡꜱ ᴄᴍᴅ",           description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ɴᴇᴡꜱ ᴍᴇɴᴜ 🍷",           id: `${config.PREFIX}newsmenu` },
-          { title: "❄ ꜱᴇᴛᴛɪɴɢꜱ ᴄᴍᴅ",        description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 V4.0.0 ʙᴏᴛ ꜱᴇᴛᴛɪɴɢꜱ🍷",           id: `${config.PREFIX}settings` }
+          { title: "❄ ᴍᴀɪɴ ᴄᴍᴅ",           description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴍᴀɪɴ ᴍᴇɴᴜ 🏡",           id: `${config.PREFIX}mainmenu` },
+          { title: "❄ ᴏᴡɴᴇʀ ᴄᴍᴅ",          description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ᴏᴡɴᴇʀ ᴍᴇɴᴜ 🧑‍💻",          id: `${config.PREFIX}ownermenu` },
+          { title: "❄ ɢʀᴏᴜᴘ ᴄᴍᴅ",          description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ɢʀᴏᴜᴘ ᴍᴇɴᴜ 💑",          id: `${config.PREFIX}groupmenu` },
+          { title: "❄ ɴᴇᴡꜱ ᴄᴍᴅ",           description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 ᴠ.4.0.0 ɴᴇᴡꜱ ᴍᴇɴᴜ 📰",           id: `${config.PREFIX}newsmenu` },
+          { title: "❄ ꜱᴇᴛᴛɪɴɢꜱ ᴄᴍᴅ",        description: "𝙰𝚂𝙷𝙸𝚈𝙰-𝙼𝙳 V4.0.0 ʙᴏᴛ ꜱᴇᴛᴛɪɴɢꜱ 🧑‍🔧",           id: `${config.PREFIX}settings` }
         ]
       }
     ];
