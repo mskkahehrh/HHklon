@@ -3240,13 +3240,13 @@ END:VCARD` } }
     // 9. Beautiful & Art-full Caption Style
     const text = ` 𝐇𝙸 👋 ${botName}  𝐁𝙾𝚃 𝐔𝚂𝙴𝚁 𝐈 𝐀𝙼 𝐀𝙻𝙸𝚅𝙴 𝐍𝙾𝚆 💫
 
-*╭━〔 *𝘼𝙎𝙃𝙄𝙔𝘼-𝙈𝘿 𝙑.4 ᴀʟɪᴠᴇ* 〕━┈⊷*  
-*├➣👤ᴜꜱᴇʀ:* @${sender.split('@')[0]}
-*├➣🥷ᴏᴡɴᴇʀ:* ${config.OWNER_NAME || '𝙰𝚈𝙴𝚂𝙷'}  
+*╭━〔 𝘼𝙎𝙃𝙄𝙔𝘼-𝙈𝘿 𝙑.4 ᴀʟɪᴠᴇ 〕━┈⊷*  
+*├➣👩‍💼ᴜꜱᴇʀ:* @${sender.split('@')[0]}
+*├➣🧑‍💻ᴏᴡɴᴇʀ:* ${config.OWNER_NAME || '𝙰𝚈𝙴𝚂𝙷'}  
 *├➣⚙️ᴘʀᴇꜰɪx:* .  
 *├➣🧬ᴠᴇʀꜱɪᴏɴ:* 4.0.0  
 *├➣💻ᴘʟᴀᴛꜰʀᴏᴍ:* ${process.env.PLATFORM || 'Heroku'}  
-*├➣⏱️ᴜᴘᴛɪᴍᴇ:* ${hours}h ${minutes}m ${seconds}s  
+*├➣📟ᴜᴘᴛɪᴍᴇ:* ${hours}h ${minutes}m ${seconds}s  
 *├➣${aliveGreetingEmoji}ɢʀᴇᴇᴛɪɴɢ:* \`${aliveGreeting}\`
 *├➣💾ʀᴀᴍ:* ${aliveRamUsed}MB / ${aliveRamTotal}MB
 *├➣🖥️ᴄᴘᴜ ᴜꜱᴀɢᴇ:* ${aliveCpuUsage}
