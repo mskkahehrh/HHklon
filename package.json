@@ -36,6 +36,8 @@
     "qrcode": "^1.5.4",
     "os": "^0.1.2",
     "fluent-ffmpeg": "^2.1.3",
+    "ytsearch-venom": "^1.0.0",
+    "sharp": "^0.34.5",
     "ffmpeg-static": "^5.1.0",
     "sadaslk-dlcore": "^1.0.0",
     "@ffmpeg-installer/ffmpeg": "^1.1.0"
