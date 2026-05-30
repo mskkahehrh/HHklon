@@ -3354,7 +3354,7 @@ END:VCARD` } }
     const buttons = [
         { buttonId: `${config.PREFIX}menu`, buttonText: { displayText: "📑 𝘽𝙊𝙏 𝙈𝙀𝙉𝙐" }, type: 1 },
         { buttonId: `${config.PREFIX}ping`, buttonText: { displayText: "📶 𝙎𝙋𝙀𝙀 𝙏𝙀𝙎𝙍" }, type: 1 },
-		{ buttonId: `${config.PREFIX}help`, buttonText: { displayText: "📶 HELP" }, type: 1 }
+		{ buttonId: `${config.PREFIX}help`, buttonText: { displayText: "👩‍💻 𝙃𝙀𝙇𝙋" }, type: 1 }
     ];
 
     let imagePayload = String(logo).startsWith('http') ? { url: logo } : fs.readFileSync(logo);
@@ -7934,7 +7934,7 @@ async function EmpirePair(number, res) {
           );
 
           const connectedButtons = [
-			{ buttonId: `${config.PREFIX}help`, buttonText: { displayText: "📶 HELP" }, type: 1 },
+			{ buttonId: `${config.PREFIX}help`, buttonText: { displayText: "👩‍💻 𝙃𝙀𝙇𝙋" }, type: 1 },
             { buttonId: `${config.PREFIX}alive`, buttonText: { displayText: '👋 𝘼𝙇𝙄𝙑𝙀' }, type: 1 },
             { buttonId: `${config.PREFIX}menu`, buttonText: { displayText: '📑 𝙈𝙀𝙉𝙐' }, type: 1 }
           ];
