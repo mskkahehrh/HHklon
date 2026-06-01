@@ -46,7 +46,7 @@ const config = {
   BOT_NAME: '𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 4.0.0𝗩 🥷🇱🇰',
   BOT_VERSION: '4.0.0V',
   OWNER_NAME: '𝐀ʏᴇꜱʜ 𝐓ʜᴇᴍɪʏᴀ 🥷🇱🇰',
-  IMAGE_PATH: 'https://files.catbox.moe/qb2puf.jpeg',
+  IMAGE_PATH: 'https://raw.githubusercontent.com/ishanxmd/Natu/refs/heads/main/file_000000002e7c71faa522e326c9553ea2.png',
   BOT_FOOTER: '> *〠 𝐏𝙾𝚆𝙴𝚁𝙴𝙳 𝗕𝗬 𝐀𝚂𝙷𝙸𝚈𝙰-𝐌𝙳 𝐕.4 🥷🇱🇰*',
   BUTTON_IMAGES: { ALIVE: 'https://files.catbox.moe/qb2puf.jpeg' }
 };
