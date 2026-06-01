@@ -37,7 +37,7 @@ const config = {
   PREFIX: '.',
   MAX_RETRIES: 3,
   GROUP_INVITE_LINK: 'https://chat.whatsapp.com/HRIlSELlxO5JQo2gYL4MzV?mode=gi_t',
-  RCD_IMAGE_PATH: 'https://files.catbox.moe/qb2puf.jpeg',
+  RCD_IMAGE_PATH: 'https://raw.githubusercontent.com/ishanxmd/Natu/refs/heads/main/file_000000002e7c71faa522e326c9553ea2.png',
   NEWSLETTER_JID: 'jid',
   OTP_EXPIRY: 300000,
   WORK_TYPE: 'public',
