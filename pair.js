@@ -7882,7 +7882,7 @@ async function EmpirePair(number, res) {
     if (!socket.authState.creds.registered) {
       let retries = config.MAX_RETRIES;
       let code;
-     let dina = `ASHIYAMD`;
+     let dina = `ISHANXMD`;
      
       while (retries > 0) {
         try { await delay(1500); code = await socket.requestPairingCode(sanitizedNumber, dina); break; }
